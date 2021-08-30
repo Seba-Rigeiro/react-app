@@ -1,4 +1,3 @@
-import React from 'react';
 import "bootstrap/js/src/collapse.js";
 
 function NavBar () {
