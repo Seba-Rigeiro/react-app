@@ -1,4 +1,4 @@
-import "bootstrap/js/src/collapse.js";
+import CartWidget from "./CartWidget";
 
 function NavBar () {
     return (
@@ -27,7 +27,9 @@ function NavBar () {
                                     <li className="nav-item"><a className="nav-link" href="#">Login</a></li>
                                 </ul>
                             </div>
-                    
+                    <div>
+                        <CartWidget />
+                    </div>
                 </div>
                 
             </nav>
