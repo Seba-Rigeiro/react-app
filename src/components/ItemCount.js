@@ -25,6 +25,7 @@ function ItemCount () {
                     <button type="button" className="btn btn-secondary btn-sm "onClick={removeItem}>-</button>
                 </div>
                 <p>stock: {stock}</p>
+                <button type="button" className="btn btn-secondary btn-sm">Agregar al Carrito</button>
             </div>
         </div>
     )
