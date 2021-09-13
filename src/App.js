@@ -4,6 +4,8 @@ import ItemCount from './components/ItemCount'
 import ItemListContainer from './components/ItemListContainer.js';
 
 
+
+
 function App() {
   return (
     <div className="App">
@@ -12,7 +14,7 @@ function App() {
       </header>
 
       <section>  
-      <ItemListContainer greeting="El listado de productos se encuentra en construccion"/>
+      <ItemListContainer />
       <ItemCount />
       </section>
     

@@ -1,10 +1,12 @@
+import ItemList from "./ItemList";
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
     return (
-        <div className="text-center">
-            <h3 > {greeting} </h3>
-            <img src="images/construction.jpg" width="500" ></img>
-        </div>
+        <div className="container">
+            <div className="row align-items-start py-4">
+                    <ItemList/>
+           </div> 
+       </div>             
     )
 }
 
