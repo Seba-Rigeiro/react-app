@@ -18,8 +18,8 @@ function NavBar () {
                             
                             <div className="collapse navbar-collapse" id="main-menu">
                                 <ul className="navbar-nav me-auto ms-auto">
-                                    <li className="nav-item"><a className="nav-link" href="#">Home</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#">Vehiculos</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/products">Vehiculos</a></li>
                                     <li className="nav-item"><a className="nav-link" href="#">Contacto</a></li>
                                 </ul>
                                 <ul className="navbar-nav">
