@@ -4,27 +4,35 @@ import NavBar from './components/NavBar.js';
 import ItemListContainer from './components/ItemListContainer.js';
 import ItemDetailContainer from './components/ItemDetailContainer.js';
 
+const productsCategory = [
+  {id: "1", name: "autos"},
+  {id: "2", name: "camionetas"},
+]
 
 
 function App() {
   return (
     <BrowserRouter>
-        <div className="App">
-          <header>
-            <NavBar />
-          </header>
         <Switch>
-          <section>
-            <Route exact path="/">  
-          <ItemListContainer />
-            </Route>
-          <ItemDetailContainer />
-         
-          </section>
+          <div className="App">
+            <header>
+              <NavBar productsCategory={productsCategory} />
+            </header>
+          
+            <section>
+              <Route exact path="/">  
+                <ItemListContainer />
+              </Route>
+              <Route exact path="/category/:id">  
+                <ItemListContainer />
+              </Route>
+              <Route path="/item/:id">
+                <ItemDetailContainer />
+              </Route>
+            </section>
+          </div>
         </Switch>
-        </div>
     </BrowserRouter>
-
   );
 }
 

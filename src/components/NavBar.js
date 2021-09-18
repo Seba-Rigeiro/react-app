@@ -1,16 +1,17 @@
+import { Link, NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
-function NavBar () {
+function NavBar ({productsCategory}) {
     return (
        
             <nav className="navbar navbar-dark bg-secondary navbar-expand-md">
                
                <div className="container">
                
-                    <a className="navbar-brand">
-                       <img src="images/logo.png" alt="logo del sitio" width="130"></img> Auto Sell
-                    </a>
-
+               <Link to="/"> <a className="navbar-brand">
+                                <img src="images/logo.png" alt="logo del sitio" width="130"></img> Auto Sell
+                            </a>  </Link>
+                   
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" 
                             aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -18,9 +19,7 @@ function NavBar () {
                             
                             <div className="collapse navbar-collapse" id="main-menu">
                                 <ul className="navbar-nav me-auto ms-auto">
-                                    <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/products">Vehiculos</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#">Contacto</a></li>
+                                    {productsCategory.map(category => <NavLink key={category.id} to={`/category/${category.name}`}> <li className="nav-item"><a className="nav-link">{category.name}</a></li></NavLink>)}
                                 </ul>
                                 <ul className="navbar-nav">
                                     <li className="nav-item"><a className="nav-link" href="#">Registrate</a></li>
