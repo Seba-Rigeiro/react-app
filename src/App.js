@@ -4,7 +4,7 @@ import NavBar from './components/NavBar.js';
 import ItemListContainer from './components/ItemListContainer.js';
 import ItemDetailContainer from './components/ItemDetailContainer.js';
 import Cart from './components/ItemDetailContainer.js';
-import { CartContext } from './context/CartContext.js';
+import CartContext  from './context/CartContext.js';
 
 const productsCategory = [
   {id: "1", name: "autos"},
