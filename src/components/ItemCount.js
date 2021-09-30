@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import CartContext from '../context/CartContext';
 
-function ItemCount ({stock, click}) {
+function ItemCount ({prod, setQuantity}) {
+    const { addProduct } = useContext(CartContext)
     
     const [ count, setCount ] = useState (0)
+    
     const addItem = () => {
-        if (count < stock) {
+        if (count < prod?.stock) {
             setCount (count + 1)
         }
     }
@@ -14,7 +17,7 @@ function ItemCount ({stock, click}) {
             setCount (count - 1)
         }
     }
-    
+       
     return (
         <div className=" p-3 text-center">
             <div className="card-body">
@@ -23,8 +26,8 @@ function ItemCount ({stock, click}) {
                     <p className="card-text m-2">{count}</p>
                     <button type="button" className="btn btn-secondary btn-sm" onClick={addItem}>+</button>
                 </div>
-                <p>stock: {stock}</p>
-                {/* <Link to="/cart"> */} <button onClick={() => click(count)} type="button" className="btn btn-secondary btn-sm">Agregar al Carrito</button>{/* </Link> */}
+                <p>stock: {prod?.stock}</p>
+                <button onClick={() => addProduct(prod, count)} type="button" className="btn btn-secondary btn-sm">Agregar al Carrito</button>
             </div>
         </div>
     )

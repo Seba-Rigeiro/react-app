@@ -28,7 +28,10 @@ function ItemDetailContainer()  {
             const product = listproduct.find(prod => prod.id == id)
             setProduct(product)
         })
-    }, [])
+        return (() => {
+            setProduct([])
+        })
+    }, [id])
 
     if (product.length == 0) {
         return (<img src="../images/spinning-loading.gif"></img>
