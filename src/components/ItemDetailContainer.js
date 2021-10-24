@@ -1,9 +1,11 @@
 import ItemDetail from "./ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { db } from '../services/firebase/firebase'
+import { doc, getDoc } from 'firebase/firestore'
 
 
-const products = [
+/* const products = [
     {id: "1", name: "Toyota Corolla", category: "autos", description:"Toyota Corolla 1.8 Xei Mt Pack 140cv", price:"2.000.000" , pictureUrl: "images/products/corolla.jpg", stock: "10"},
     {id: "2", name: "Ford Fiesta", category: "autos", description:"Ford Fiesta Kinetic Design 1.6 Titanium 120cv", price:"1.500.000" , pictureUrl: "images/products/fiesta.jpg", stock: "20"},
     {id: "3", name: "Chevrolet Cruze", category: "autos", description:"Chevrolet Cruze II 1.4 Ltz At 153cv", price:"1.800.000" , pictureUrl: "images/products/cruze.jpg", stock: "18"},
@@ -17,30 +19,40 @@ function getProduct () {
     return new Promise ( (res, rej) => {
         setTimeout(() => res (products), 2000);
     })
-}
+} */
 
 function ItemDetailContainer()  {
     const { id } = useParams()
     const [product, setProduct] = useState([])
-    useEffect (() => {
-        const products = getProduct()
-        products.then(listproduct => {
-            const product = listproduct.find(prod => prod.id == id)
-            setProduct(product)
-        })
-        return (() => {
-            setProduct([])
-        })
-    }, [id])
+    const [loading, setLoading] = useState(true)
 
-    if (product.length == 0) {
-        return (<img src="../images/spinning-loading.gif"></img>
+        useEffect(() => {
+            setLoading(true)
+            getDoc(doc(db, 'products' , id))
+            .then((querySnapshot) => {
+                const product = { id: querySnapshot.id, ...querySnapshot.data()}
+                setProduct(product)
+            }).catch((error) => {
+                console.log('Error searching intems', error)
+            }).finally(() => {
+                setLoading(false)
+            })
+            return (() => {
+                setLoading(true)
+                setProduct([])
+            })
+        },[id])
+
+    /*  if (product.length == 0) {
+            return (<img src="../images/spinning-loading.gif"></img>
+            )
+        } */
+
+        return (
+            <div>
+            { loading ? <img src="../images/spinning-loading.gif"></img> : <ItemDetail prod={product} />}
+            </div>
         )
-    }
-
-    return (
-        <ItemDetail prod={product} />
-    )
 }
 
 export default ItemDetailContainer;

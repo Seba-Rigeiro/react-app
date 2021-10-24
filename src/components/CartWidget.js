@@ -1,12 +1,15 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from "react";
+import CartContext from '../context/CartContext'
+
 
 function CartWidget () {
+    const { getQuantity } = useContext(CartContext)
     return (
-        <div>
+        <button>
             {/* <FontAwesomeIcon icon={faCartArrowDown}/> */}
             <img src='images/cart-icon.jpg' width='30'></img>
-        </div>
+            { getQuantity() }
+        </button>
     )
 }
 

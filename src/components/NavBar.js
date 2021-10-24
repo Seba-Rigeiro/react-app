@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
+import { useContext } from "react";
+import CartContext from '../context/CartContext'
 
 function NavBar ({productsCategory}) {
+    const { getQuantity } = useContext(CartContext)
     return (
        
             <nav className="navbar navbar-dark bg-secondary navbar-expand-md">
@@ -27,7 +30,7 @@ function NavBar ({productsCategory}) {
                                 </ul>
                             </div>
                     <div>
-                       <Link to="/cart"> <CartWidget /> </Link>
+                       { getQuantity() >0 && <Link to="/cart"> <CartWidget /> </Link> }
                     </div>
                 </div>
                 
