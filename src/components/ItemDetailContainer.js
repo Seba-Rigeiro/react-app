@@ -33,7 +33,7 @@ function ItemDetailContainer()  {
                 const product = { id: querySnapshot.id, ...querySnapshot.data()}
                 setProduct(product)
             }).catch((error) => {
-                console.log('Error searching intems', error)
+                console.log(error)
             }).finally(() => {
                 setLoading(false)
             })
