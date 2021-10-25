@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import CartContext from '../context/CartContext';
 import { collection, addDoc, getDoc, doc, Timestamp, writeBatch } from 'firebase/firestore'
 import { db } from '../services/firebase/firebase'
@@ -7,12 +7,31 @@ import { Link } from 'react-router-dom';
 
 
 function Cart () {
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+ /*  const [buyer, setBuyer] = useState() */
+
   const { products, removeProduct, clear, getTotal} = useContext(CartContext)
+  
+ /* const handleBuyer = (event) => {
+    event.preventDefault();
+
+    const newBuyer = {
+        name,
+        phone,
+        email
+    }
+    console.log(newBuyer)
+    setBuyer(newBuyer)
+  }
+ */
+
 
   const confirmOrder = () => {
   
     const newOrder = {
-        buyer: "Juan Perez",
+        buyer: 'Seba',
         items: products,
         total: getTotal(),
         date: Timestamp.fromDate(new Date())
@@ -53,6 +72,20 @@ function Cart () {
       return (
         
         <div className= "text-center">  <h5>TOTAL COMPRA: ${ getTotal() }</h5>
+           {/* <div>
+            <form onSubmit={handleBuyer}>
+              <div>Name
+                <input type='text' value={name} onChange={({ target })  => setName(target.value)}/>
+              </div>
+              <div>phone
+                <input type='number' value={phone} onChange={({ target }) => setPhone(target.value)}/>
+              </div>
+              <div>Email
+                <input type='text' value={email} onChange={({ target }) => setEmail(target.value)}/>
+              </div>
+            </form>
+            <button type='submit'>Confirmar datos</button>
+          </div> */}
         
         <Link to="/"><button onClick={() => clear()} type="button" className="btn btn-secondary btn-sm">Vaciar carrito</button></Link>
         <Link to="/"><button onClick={() => confirmOrder()} type="button" className="btn btn-secondary btn-sm">Confirmar Compra</button></Link>
@@ -71,9 +104,10 @@ function Cart () {
               </div>
             )}
         </div>
+      
       )
     }
     
-}
+  }
 
 export default Cart;
